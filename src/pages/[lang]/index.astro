@@ -1,0 +1,68 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import VisualMap from "@/components/VisualMap.astro";
+import { navText, weeks, type Lang } from "@/data/course";
+
+export function getStaticPaths() {
+  return ["en", "zh"].map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = navText[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const foundation = weeks.filter((week) => week.track === "foundation");
+const phaseTwo = weeks.filter((week) => week.track === "phase-two");
+---
+
+<BaseLayout
+  title={lang === "en" ? "Contemporary Media Art Course" : "当代媒体艺术课程"}
+  description={lang === "en" ? "A bilingual interactive web book for contemporary art and new media art." : "一个中英双语的当代艺术与新媒体艺术互动课程。"}
+  lang={lang}
+  path={`/${lang}/`}
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">{lang === "en" ? "Bilingual interactive web book" : "中英双语互动学习手册"}</p>
+      <h1>{lang === "en" ? "Contemporary Art After the Object" : "物之后的当代艺术"}</h1>
+      <p>
+        {lang === "en"
+          ? "A 16-week fieldbook for contemporary art, new media, AI art, institutions, criticism, and creative method transfer."
+          : "一套 16 周学习路径，连接当代艺术、新媒体、AI 艺术、机构、评论，以及面向创作系统的方法迁移。"}
+      </p>
+      <a class="primary-action" href={`${base}/${lang}/week/1/`}>{t.start}</a>
+    </div>
+    <VisualMap kind="timeline" lang={lang} />
+  </section>
+
+  <section class="course-grid-section">
+    <div class="section-heading">
+      <p class="eyebrow">{t.foundation}</p>
+      <h2>{lang === "en" ? "12-week foundation cycle" : "12 周基础周期"}</h2>
+    </div>
+    <div class="course-grid">
+      {foundation.map((week) => (
+        <a class="week-card" href={`${base}/${lang}/week/${week.week}/`}>
+          <span>Week {week.week}</span>
+          <h3>{week.title[lang]}</h3>
+          <p>{week.goal[lang]}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="course-grid-section alt-band">
+    <div class="section-heading">
+      <p class="eyebrow">{t.phaseTwo}</p>
+      <h2>{lang === "en" ? "Specialization toward MandarinAi" : "面向 MandarinAi 的专题深化"}</h2>
+    </div>
+    <div class="course-grid four">
+      {phaseTwo.map((week) => (
+        <a class="week-card" href={`${base}/${lang}/week/${week.week}/`}>
+          <span>Week {week.week}</span>
+          <h3>{week.title[lang]}</h3>
+          <p>{week.goal[lang]}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,101 @@
+---
+import MediaNotes from "@/components/MediaNotes.astro";
+import Quiz from "@/components/Quiz.astro";
+import VisualMap from "@/components/VisualMap.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getWeek, getWeekQuizzes, navText, weeks, type Lang } from "@/data/course";
+
+export function getStaticPaths() {
+  return ["en", "zh"].flatMap((lang) =>
+    weeks.map((week) => ({ params: { lang, week: String(week.week) } }))
+  );
+}
+
+const lang = Astro.params.lang as Lang;
+const weekNumber = Number(Astro.params.week);
+const week = getWeek(weekNumber);
+
+if (!week) {
+  throw new Error(`Missing week ${Astro.params.week}`);
+}
+
+const t = navText[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const quizzes = getWeekQuizzes(week.week, lang);
+const previousWeek = getWeek(week.week - 1);
+const nextWeek = getWeek(week.week + 1);
+---
+
+<BaseLayout
+  title={`${week.title[lang]} | Contemporary Media Art Course`}
+  description={week.goal[lang]}
+  lang={lang}
+  path={`/${lang}/week/${week.week}/`}
+>
+  <article class="lesson">
+    <aside class="lesson-sidebar">
+      <a href={`${base}/${lang}/`}>{t.course}</a>
+      {weeks.map((item) => (
+        <a class={item.week === week.week ? "is-active" : ""} href={`${base}/${lang}/week/${item.week}/`}>
+          {item.week}. {item.title[lang]}
+        </a>
+      ))}
+    </aside>
+
+    <div class="lesson-body">
+      <header class="lesson-header">
+        <p class="eyebrow">Week {week.week}</p>
+        <h1>{week.title[lang]}</h1>
+        <p>{week.shift[lang]}</p>
+      </header>
+
+      <section class="lesson-section">
+        <p class="eyebrow">{t.goal}</p>
+        <h2>{week.goal[lang]}</h2>
+      </section>
+
+      <section class="lesson-section">
+        <p class="eyebrow">{t.focus}</p>
+        <div class="focus-list">
+          {week.focus[lang].map((item) => <span>{item}</span>)}
+        </div>
+      </section>
+
+      {week.chart && (
+        <section class="lesson-section">
+          <p class="eyebrow">{t.chart}</p>
+          <VisualMap kind={week.chart} lang={lang} />
+        </section>
+      )}
+
+      <section class="lesson-section">
+        <p class="eyebrow">{t.artists}</p>
+        <div class="artist-strip">
+          {week.artists.map((artist) => <span>{artist}</span>)}
+        </div>
+      </section>
+
+      <section class="lesson-section assignment">
+        <p class="eyebrow">{t.assignment}</p>
+        <p>{week.assignment[lang]}</p>
+      </section>
+
+      {quizzes.length > 0 && (
+        <section class="lesson-section">
+          <p class="eyebrow">{t.quiz}</p>
+          {quizzes.map((quiz) => <Quiz quiz={quiz} />)}
+        </section>
+      )}
+
+      <section class="lesson-section">
+        <p class="eyebrow">{t.media}</p>
+        <MediaNotes lang={lang} />
+      </section>
+
+      <nav class="pager" aria-label="Lesson">
+        {previousWeek ? <a href={`${base}/${lang}/week/${previousWeek.week}/`}>{t.previous}: {previousWeek.title[lang]}</a> : <span />}
+        {nextWeek ? <a href={`${base}/${lang}/week/${nextWeek.week}/`}>{t.next}: {nextWeek.title[lang]}</a> : <span />}
+      </nav>
+    </div>
+  </article>
+</BaseLayout>

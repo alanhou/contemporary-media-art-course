@@ -1,0 +1,18 @@
+---
+import { mediaNotes, type Lang } from "@/data/course";
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+---
+
+<section class="media-notes">
+  {mediaNotes.map((note) => (
+    <article>
+      <p class="eyebrow">{note.title}</p>
+      <p>{note[lang]}</p>
+    </article>
+  ))}
+</section>

@@ -1,0 +1,31 @@
+---
+import Worksheet from "@/components/Worksheet.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { navText, templates, type Lang } from "@/data/course";
+
+export function getStaticPaths() {
+  return ["en", "zh"].map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = navText[lang];
+---
+
+<BaseLayout
+  title={`${t.templates} | Contemporary Media Art Course`}
+  description="Interactive worksheets for contemporary art learning."
+  lang={lang}
+  path={`/${lang}/templates/`}
+>
+  <section class="page-title">
+    <p class="eyebrow">{t.templates}</p>
+    <h1>{lang === "en" ? "Workbook templates" : "学习工作表"}</h1>
+    <p>{lang === "en" ? "Fill these in as you study. Your answers stay in this browser and can be exported as Markdown." : "学习时可以直接填写。答案会保存在本浏览器，并可导出为 Markdown。"}</p>
+  </section>
+
+  <div class="worksheet-stack">
+    {templates.map((template) => (
+      <Worksheet id={template.id} title={template.title[lang]} fields={template.fields[lang]} lang={lang} />
+    ))}
+  </div>
+</BaseLayout>

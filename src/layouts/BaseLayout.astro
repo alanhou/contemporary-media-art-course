@@ -1,0 +1,48 @@
+---
+import "../styles/global.css";
+import { alternateLang, languages, navText, type Lang } from "@/data/course";
+
+type Props = {
+  title: string;
+  description: string;
+  lang: Lang;
+  path?: string;
+};
+
+const { title, description, lang, path = "" } = Astro.props;
+const otherLang = alternateLang(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const currentText = navText[lang];
+const langPath = path ? path.replace(/^\/?(en|zh)/, `/${otherLang}`) : `/${otherLang}/`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={`${base}/${lang}/`} aria-label="Course home">
+        <span class="brand-mark">AM</span>
+        <span>
+          <strong>Art / Media</strong>
+          <small>{lang === "en" ? "Contemporary learning fieldbook" : "当代艺术学习手册"}</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary">
+        <a href={`${base}/${lang}/`}>{currentText.course}</a>
+        <a href={`${base}/${lang}/artists/`}>{currentText.artists}</a>
+        <a href={`${base}/${lang}/templates/`}>{currentText.templates}</a>
+        <a href={`${base}/${lang}/mandarinai-lab/`}>{currentText.lab}</a>
+        <a class="lang-switch" href={`${base}${langPath}`}>{languages[otherLang].shortLabel}</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

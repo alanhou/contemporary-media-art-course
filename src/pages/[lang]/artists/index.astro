@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { artists, navText, type Lang } from "@/data/course";
+
+export function getStaticPaths() {
+  return ["en", "zh"].map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = navText[lang];
+---
+
+<BaseLayout
+  title={`${t.artists} | Contemporary Media Art Course`}
+  description="Artist database for the course."
+  lang={lang}
+  path={`/${lang}/artists/`}
+>
+  <section class="page-title">
+    <p class="eyebrow">{t.artists}</p>
+    <h1>{lang === "en" ? "Artist database" : "艺术家数据库"}</h1>
+    <p>{lang === "en" ? "Thirty-plus artists mapped by medium, theme, and creative use." : "按媒介、主题和创作用途组织的三十余位艺术家。"}</p>
+  </section>
+
+  <section class="artist-grid">
+    {artists.map((artist) => (
+      <article class="artist-card">
+        <h2>{artist.name}</h2>
+        <p><strong>{lang === "en" ? "Medium" : "媒介"}:</strong> {artist.medium}</p>
+        <p><strong>{lang === "en" ? "Theme" : "主题"}:</strong> {artist.theme}</p>
+        <p><strong>{lang === "en" ? "Useful for" : "可用于"}:</strong> {artist.usefulFor}</p>
+        <div class="mini-weeks">
+          {artist.weeks.map((week) => <span>W{week}</span>)}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

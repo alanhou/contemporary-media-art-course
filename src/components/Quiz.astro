@@ -1,0 +1,53 @@
+---
+import type { Quiz as QuizType } from "@/data/course";
+
+type Props = {
+  quiz: QuizType;
+};
+
+const { quiz } = Astro.props;
+---
+
+<section class="quiz-card" data-quiz={quiz.id} data-answer={quiz.answer}>
+  <p class="eyebrow">{quiz.lang === "en" ? "Inline check" : "随堂测试"}</p>
+  <h3>{quiz.prompt}</h3>
+  <div class="quiz-options">
+    {quiz.options.map((option, index) => (
+      <button type="button" data-option={index}>{option}</button>
+    ))}
+  </div>
+  <p class="quiz-feedback" aria-live="polite"></p>
+  <p class="quiz-explanation" hidden>{quiz.explanation}</p>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-quiz]").forEach((quiz) => {
+    const answer = Number(quiz.dataset.answer);
+    const feedback = quiz.querySelector<HTMLElement>(".quiz-feedback");
+    const explanation = quiz.querySelector<HTMLElement>(".quiz-explanation");
+    const storageKey = `cma-course:${quiz.dataset.quiz}`;
+    const saved = window.localStorage.getItem(storageKey);
+
+    function setState(selected: number) {
+      quiz.querySelectorAll<HTMLButtonElement>("[data-option]").forEach((button) => {
+        const value = Number(button.dataset.option);
+        button.classList.toggle("is-correct", value === answer);
+        button.classList.toggle("is-selected", value === selected);
+        button.setAttribute("aria-pressed", String(value === selected));
+      });
+      const correct = selected === answer;
+      if (feedback) feedback.textContent = correct ? "Correct. / 答对了。" : "Not quite. / 再想一步。";
+      if (explanation) explanation.hidden = false;
+    }
+
+    if (saved !== null) setState(Number(saved));
+
+    quiz.querySelectorAll<HTMLButtonElement>("[data-option]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = Number(button.dataset.option);
+        window.localStorage.setItem(storageKey, String(selected));
+        setState(selected);
+      });
+    });
+  });
+</script>

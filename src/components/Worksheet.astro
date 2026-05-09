@@ -1,0 +1,46 @@
+---
+type Props = {
+  id: string;
+  title: string;
+  fields: string[];
+  lang: "en" | "zh";
+};
+
+const { id, title, fields, lang } = Astro.props;
+---
+
+<section class="worksheet" data-worksheet={id}>
+  <h2>{title}</h2>
+  {fields.map((field) => (
+    <label>
+      <span>{field}</span>
+      <textarea rows="3" data-field={field}></textarea>
+    </label>
+  ))}
+  <button class="export-button" type="button">{lang === "en" ? "Export Markdown" : "导出 Markdown"}</button>
+  <pre class="worksheet-export" hidden></pre>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-worksheet]").forEach((worksheet) => {
+    const id = worksheet.dataset.worksheet;
+    const areas = Array.from(worksheet.querySelectorAll<HTMLTextAreaElement>("textarea[data-field]"));
+    const button = worksheet.querySelector<HTMLButtonElement>(".export-button");
+    const output = worksheet.querySelector<HTMLPreElement>(".worksheet-export");
+
+    areas.forEach((area) => {
+      const key = `cma-course:worksheet:${id}:${area.dataset.field}`;
+      area.value = window.localStorage.getItem(key) ?? "";
+      area.addEventListener("input", () => window.localStorage.setItem(key, area.value));
+    });
+
+    button?.addEventListener("click", () => {
+      const title = worksheet.querySelector("h2")?.textContent ?? "Worksheet";
+      const markdown = [`# ${title}`, "", ...areas.flatMap((area) => [`## ${area.dataset.field}`, area.value || "_blank_", ""])].join("\n");
+      if (output) {
+        output.hidden = false;
+        output.textContent = markdown;
+      }
+    });
+  });
+</script>
