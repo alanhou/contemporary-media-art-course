@@ -43,7 +43,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 14px clamp(18px, 4vw, 56px);
+  padding: 12px clamp(16px, 4vw, 56px);
   border-bottom: 1px solid var(--line);
   background: rgba(247, 247, 244, 0.92);
   backdrop-filter: blur(18px);
@@ -101,10 +101,10 @@ textarea {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: center;
-  min-height: 76vh;
+  min-height: min(760px, 76vh);
   padding: clamp(48px, 8vw, 96px) clamp(18px, 4vw, 64px) 40px;
   border-bottom: 1px solid var(--line);
 }
@@ -175,12 +175,18 @@ textarea {
 }
 
 .section-heading h2,
-.lesson-section h2,
 .page-title h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2rem, 4vw, 4.5rem);
   line-height: 1;
+}
+
+.lesson-section h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3vw, 3.1rem);
+  line-height: 1.06;
 }
 
 .course-grid,
@@ -243,7 +249,7 @@ textarea {
 
 .lesson {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
 }
 
 .lesson-sidebar {
@@ -254,6 +260,10 @@ textarea {
   padding: 24px 14px;
   border-right: 1px solid var(--line);
   background: #efefea;
+}
+
+.lesson-body {
+  min-width: 0;
 }
 
 .lesson-sidebar a {
@@ -280,7 +290,27 @@ textarea {
 }
 
 .lesson-section {
-  max-width: 1040px;
+  max-width: 1120px;
+}
+
+.lesson-reading {
+  display: grid;
+  gap: 18px;
+}
+
+.reading-block {
+  max-width: 860px;
+}
+
+.reading-block h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1.65rem, 2.6vw, 2.6rem);
+}
+
+.reading-block p {
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.8;
 }
 
 .focus-list,
@@ -301,16 +331,17 @@ textarea {
 
 .visual-map {
   width: 100%;
-  min-height: 260px;
+  min-height: 0;
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+  overflow: hidden;
 }
 
 .timeline-map {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
   gap: 12px;
 }
 
@@ -328,19 +359,17 @@ textarea {
 }
 
 .radial-map {
-  position: relative;
   display: grid;
-  min-height: 420px;
-  place-items: center;
-  overflow: hidden;
+  grid-template-columns: minmax(160px, 0.65fr) minmax(0, 1.35fr);
+  gap: 18px;
+  align-items: stretch;
 }
 
 .radial-core {
   display: grid;
-  width: 180px;
-  height: 180px;
+  min-height: 100%;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 8px;
   background: var(--ink);
   color: white;
   text-align: center;
@@ -348,29 +377,33 @@ textarea {
   font-size: 1.5rem;
 }
 
-.radial-item {
-  position: absolute;
+.radial-grid {
   display: grid;
-  width: 120px;
-  height: 120px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.radial-item {
+  display: grid;
+  min-height: 92px;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 8px;
   background: #fff;
   text-align: center;
   font-weight: 750;
 }
 
-.radial-0 { transform: translate(-210px, -118px); color: var(--red); }
-.radial-1 { transform: translate(0, -170px); color: var(--blue); }
-.radial-2 { transform: translate(210px, -118px); color: var(--green); }
-.radial-3 { transform: translate(210px, 118px); color: var(--teal); }
-.radial-4 { transform: translate(0, 170px); color: var(--violet); }
-.radial-5 { transform: translate(-210px, 118px); color: var(--gold); }
+.radial-item:nth-child(1) { color: var(--red); }
+.radial-item:nth-child(2) { color: var(--blue); }
+.radial-item:nth-child(3) { color: var(--green); }
+.radial-item:nth-child(4) { color: var(--teal); }
+.radial-item:nth-child(5) { color: var(--violet); }
+.radial-item:nth-child(6) { color: var(--gold); }
 
 .matrix-map {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
 }
 
@@ -389,23 +422,25 @@ textarea {
 }
 
 .spectrum-map {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
-  min-height: 180px;
+  min-height: 0;
+  padding: 14px;
+  border-radius: 8px;
   background: linear-gradient(90deg, rgba(189, 45, 45, 0.12), rgba(8, 127, 140, 0.12), rgba(38, 88, 168, 0.12));
 }
 
 .ladder-map {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   align-items: end;
   gap: 10px;
 }
 
 .ladder-map div {
-  min-height: calc(var(--step) * 52px);
+  min-height: clamp(92px, calc(var(--step) * 42px), 220px);
 }
 
 .quiz-card {
@@ -452,6 +487,7 @@ textarea {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+  margin-top: 16px;
 }
 
 .media-notes article,
@@ -459,6 +495,65 @@ textarea {
 .method-grid article,
 .worksheet {
   padding: 20px;
+}
+
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.media-card {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.75fr) minmax(0, 1.25fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.media-image {
+  min-height: 240px;
+  background: #e9e9e2;
+}
+
+.media-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-copy {
+  padding: 18px;
+}
+
+.media-copy h3 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+}
+
+.media-copy p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.media-creator {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.source-link {
+  display: inline-flex;
+  margin: 4px 0 8px;
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.media-copy small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 .artist-grid {
@@ -548,8 +643,10 @@ textarea {
   .lesson-sidebar {
     position: static;
     display: flex;
+    gap: 6px;
     height: auto;
     overflow: auto;
+    padding: 12px;
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
@@ -564,27 +661,59 @@ textarea {
   .artist-grid,
   .method-grid,
   .media-notes,
-  .timeline-map,
-  .matrix-map,
+  .media-gallery,
   .ladder-map {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .radial-map,
+  .media-card {
+    grid-template-columns: 1fr;
+  }
+
+  .radial-core {
+    min-height: 140px;
   }
 }
 
 @media (max-width: 680px) {
   .site-header {
-    align-items: flex-start;
+    position: static;
+    align-items: stretch;
     flex-direction: column;
+    gap: 10px;
   }
 
   .top-nav {
+    flex-wrap: nowrap;
     justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .top-nav a {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
   }
 
   .hero h1,
   .page-title h1,
   .lesson-header h1 {
-    font-size: 3rem;
+    font-size: clamp(2.35rem, 13vw, 3.4rem);
+    line-height: 1;
+  }
+
+  .hero {
+    min-height: 0;
+    padding-top: 40px;
   }
 
   .course-grid,
@@ -592,31 +721,38 @@ textarea {
   .artist-grid,
   .method-grid,
   .media-notes,
+  .media-gallery,
   .timeline-map,
   .matrix-map,
   .ladder-map {
     grid-template-columns: 1fr;
   }
 
-  .radial-map {
-    display: grid;
-    gap: 10px;
-    min-height: 0;
+  .lesson-header {
+    padding: 36px 18px;
   }
 
-  .radial-core,
-  .radial-item {
-    position: static;
-    width: auto;
-    height: auto;
-    min-height: 74px;
-    border-radius: 8px;
-    transform: none;
+  .course-grid-section,
+  .page-title,
+  .lesson-section {
+    padding: 32px 18px;
+  }
+
+  .visual-map {
+    padding: 12px;
+  }
+
+  .radial-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .radial-core {
+    min-height: 100px;
+    font-size: 1.2rem;
   }
 
   .spectrum-map {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 
   .pager {

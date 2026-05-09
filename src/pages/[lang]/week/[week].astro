@@ -1,9 +1,10 @@
 ---
 import MediaNotes from "@/components/MediaNotes.astro";
+import MediaGallery from "@/components/MediaGallery.astro";
 import Quiz from "@/components/Quiz.astro";
 import VisualMap from "@/components/VisualMap.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getWeek, getWeekQuizzes, navText, weeks, type Lang } from "@/data/course";
+import { getLessonSections, getMediaItems, getWeek, getWeekQuizzes, navText, weeks, type Lang } from "@/data/course";
 
 export function getStaticPaths() {
   return ["en", "zh"].flatMap((lang) =>
@@ -22,6 +23,8 @@ if (!week) {
 const t = navText[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const quizzes = getWeekQuizzes(week.week, lang);
+const lessonSections = getLessonSections(week.week);
+const mediaItems = getMediaItems(week.week);
 const previousWeek = getWeek(week.week - 1);
 const nextWeek = getWeek(week.week + 1);
 ---
@@ -53,6 +56,18 @@ const nextWeek = getWeek(week.week + 1);
         <p class="eyebrow">{t.goal}</p>
         <h2>{week.goal[lang]}</h2>
       </section>
+
+      {lessonSections.length > 0 && (
+        <section class="lesson-section lesson-reading">
+          <p class="eyebrow">{lang === "en" ? "Reading Notes" : "阅读笔记"}</p>
+          {lessonSections.map((section) => (
+            <article class="reading-block">
+              <h2>{section.title[lang]}</h2>
+              <p>{section.body[lang]}</p>
+            </article>
+          ))}
+        </section>
+      )}
 
       <section class="lesson-section">
         <p class="eyebrow">{t.focus}</p>
@@ -89,6 +104,7 @@ const nextWeek = getWeek(week.week + 1);
 
       <section class="lesson-section">
         <p class="eyebrow">{t.media}</p>
+        <MediaGallery items={mediaItems} lang={lang} />
         <MediaNotes lang={lang} />
       </section>
 

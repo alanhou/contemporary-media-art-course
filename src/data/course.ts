@@ -31,6 +31,24 @@ export type Artist = {
   weeks: number[];
 };
 
+export type LessonSection = {
+  week: number;
+  title: Record<Lang, string>;
+  body: Record<Lang, string>;
+};
+
+export type MediaItem = {
+  id: string;
+  weeks: number[];
+  title: string;
+  creator: string;
+  year: string;
+  imageUrl?: string;
+  sourceUrl: string;
+  license: string;
+  caption: Record<Lang, string>;
+};
+
 export const languages: Record<Lang, { label: string; shortLabel: string }> = {
   en: { label: "English", shortLabel: "EN" },
   zh: { label: "中文", shortLabel: "中文" }
@@ -648,6 +666,232 @@ export const mediaNotes = [
     zh: "优先补充《泉》《一把和三把椅子》《电视佛》《天气计划》《如何不被看见》、Refik Anadol 项目文献，以及徐冰的语言作品。"
   }
 ];
+
+export const lessonSections: LessonSection[] = [
+  {
+    week: 1,
+    title: { en: "What changed after the object?", zh: "物之后发生了什么？" },
+    body: {
+      en: "The first move is to stop treating contemporary art as a list of strange objects. The object may still matter, but it often works as evidence of a larger operation: a decision, a rule, a social situation, an institutional frame, a recorded action, or a system that the viewer enters. Duchamp's readymade is useful because it makes the frame visible: selection, naming, exhibition, rejection, and debate all become part of the work.",
+      zh: "第一步不是把当代艺术看成一堆奇怪物件，而是看到物件背后的操作。物仍然重要，但它常常只是更大机制的证据：一个决定、一条规则、一种社会处境、一个机构框架、一次被记录的行动，或一个观众进入的系统。杜尚的现成品之所以关键，是因为它让框架显形：选择、命名、展出、拒绝和争论都成为作品的一部分。"
+    }
+  },
+  {
+    week: 2,
+    title: { en: "Build families, not a celebrity list", zh: "建立谱系，而不是名人清单" },
+    body: {
+      en: "The artists in this week are easier to remember if you sort them by the problems they keep returning to: power, identity, technology, memory, spectacle, participation, and data. A useful artist database should tell you what a work asks, what medium makes that question possible, and what kind of viewer it produces.",
+      zh: "这一周的艺术家如果只按名字记会很散。更有效的方法是按他们反复处理的问题来归类：权力、身份、技术、记忆、景观、参与和数据。一个有用的艺术家数据库应该说明作品提出什么问题，什么媒介让这个问题成立，以及它制造了哪一种观看者。"
+    }
+  },
+  {
+    week: 3,
+    title: { en: "Time, attention, and the body", zh: "时间、注意力与身体" },
+    body: {
+      en: "Video, performance, and installation change the unit of art from object to duration. You do not simply identify what is represented; you notice how long something takes, where your body stands, what repeats, what sound does, and whether the work asks you to wait, endure, witness, or participate.",
+      zh: "影像、行为和装置把艺术的单位从物件改成持续时间。你不只是辨认作品表现了什么，还要注意它需要多长时间、你的身体站在哪里、什么在重复、声音如何作用，以及作品是在要求你等待、承受、见证还是参与。"
+    }
+  },
+  {
+    week: 4,
+    title: { en: "New media as a behavior", zh: "新媒体作为一种行为" },
+    body: {
+      en: "New media art is strongest when technology is not decoration but behavior. A browser can misbehave, a camera can create a feedback loop, an algorithm can generate form, and a database can reveal what a culture remembers or forgets. The medium is not only the device; it is the rule system behind the experience.",
+      zh: "新媒体艺术最有力量的时候，技术不是装饰，而是一种行为。浏览器可以出错，摄像机可以制造反馈回路，算法可以生成形式，数据库可以暴露一种文化记住和遗忘的东西。媒介不只是设备，而是经验背后的规则系统。"
+    }
+  },
+  {
+    week: 5,
+    title: { en: "Ask what the technology reveals", zh: "追问技术揭示了什么" },
+    body: {
+      en: "The same technology can produce wonder, control, intimacy, surveillance, or ecological awareness. This is why theme matters more than gadget. When you compare artists, ask whether the work beautifies technology, exposes technology, slows it down, makes it bodily, or turns it into a public problem.",
+      zh: "同一种技术可以制造惊奇、控制、亲密、监控或生态意识。所以主题比设备更重要。比较艺术家时，要问作品是在美化技术、暴露技术、放慢技术、让技术进入身体，还是把技术变成公共问题。"
+    }
+  },
+  {
+    week: 6,
+    title: { en: "Institutions are part of the medium", zh: "机构也是媒介的一部分" },
+    body: {
+      en: "Museums, biennials, archives, galleries, markets, and platforms do not merely host art. They decide what becomes visible, what becomes valuable, and what survives as history. Institutional context is not background information; it changes the meaning of the work.",
+      zh: "博物馆、双年展、档案、画廊、市场和平台不只是承载艺术。它们决定什么被看见、什么获得价值、什么作为历史留下来。机构语境不是背景资料，而会改变作品的意义。"
+    }
+  },
+  {
+    week: 7,
+    title: { en: "A database is a creative instrument", zh: "数据库是一件创作工具" },
+    body: {
+      en: "Your artist database should not be a graveyard of copied facts. Treat it as a studio instrument: collect visual signatures, methods, viewer roles, emotional tones, and useful comparisons. The goal is to make retrieval creative, so future ideas can be assembled from clear parts.",
+      zh: "你的艺术家数据库不应该是复制资料的墓地。把它当作工作室工具：收集视觉特征、方法、观看者角色、情绪质感和有用比较。目标是让检索具有创造力，让未来的想法能由清晰部件重新组合。"
+    }
+  },
+  {
+    week: 8,
+    title: { en: "Interpretation begins with description", zh: "解读从描述开始" },
+    body: {
+      en: "A good interpretation does not jump straight to symbolism. It first describes what is actually there: materials, scale, sequence, sound, light, bodies, screens, instructions, and viewer position. Only then can you make a claim about what the work does.",
+      zh: "好的解读不会直接跳到象征意义。它先描述真实存在的东西：材料、尺度、顺序、声音、光、身体、屏幕、指令和观看位置。只有这样，你才能提出作品到底在做什么的判断。"
+    }
+  },
+  {
+    week: 9,
+    title: { en: "Taste is a pattern of attention", zh: "品味是一种注意力模式" },
+    body: {
+      en: "Taste becomes useful when you can name the pattern behind it. Maybe you are drawn to repetition, public language, fragile materials, feedback systems, or monumental atmospheres. The mature move is to extract method instead of copying surface style.",
+      zh: "当你能说出品味背后的模式时，品味才真正有用。也许你被重复、公共语言、脆弱材料、反馈系统或纪念碑式氛围吸引。成熟的做法是提炼方法，而不是复制表面风格。"
+    }
+  },
+  {
+    week: 10,
+    title: { en: "Method transfer is not imitation", zh: "方法迁移不是模仿" },
+    body: {
+      en: "To transfer an artist's method, translate the operation into a new problem. Kosuth is not a chair style; he is a way to compare object, image, and language. LeWitt is not a wall drawing look; he is a way to let rules generate form.",
+      zh: "迁移艺术家的方法，就是把一个操作翻译到新的问题里。Kosuth 不是一种椅子风格，而是一种比较物、图像和语言的方法。LeWitt 不是墙面绘画的外观，而是让规则生成形式的方法。"
+    }
+  },
+  {
+    week: 11,
+    title: { en: "Write what the work does", zh: "写出作品做了什么" },
+    body: {
+      en: "Strong art writing connects visible evidence to a claim. Instead of saying a work is 'interesting' or 'deep,' describe the medium, the viewer's role, the central question, and the tension that makes the work matter.",
+      zh: "有力的艺术写作会把可见证据和判断连接起来。不要只说作品“有趣”或“深刻”，而要描述媒介、观看者角色、中心问题，以及让作品重要的张力。"
+    }
+  },
+  {
+    week: 12,
+    title: { en: "AI as medium, not just output", zh: "AI 作为媒介，而不只是结果" },
+    body: {
+      en: "AI art becomes more interesting when the prompt image is not the endpoint. Ask what the model is doing: sorting data, simulating perception, automating choice, producing bias, collaborating with a human, or making authorship unstable.",
+      zh: "当提示词生成图像不是终点时，AI 艺术才更有意思。要问模型在做什么：整理数据、模拟感知、自动化选择、制造偏差、与人协作，还是让作者性变得不稳定。"
+    }
+  },
+  {
+    week: 13,
+    title: { en: "Language can become visual pressure", zh: "语言可以成为视觉压力" },
+    body: {
+      en: "Chinese contemporary art gives this course a crucial turn: writing systems, translation, censorship, memory, ritual, urbanization, and technology become artistic material. Xu Bing is a good entry point because he makes meaning feel constructed, unstable, and political.",
+      zh: "中国当代艺术让这门课出现一个关键转向：书写系统、翻译、审查、记忆、仪式、城市化和技术都成为艺术材料。徐冰是很好的入口，因为他让意义显得被建构、不稳定且具有政治性。"
+    }
+  },
+  {
+    week: 14,
+    title: { en: "Build a studio language", zh: "建立工作室语言" },
+    body: {
+      en: "This week turns research into practice. The question is not 'what style should Alan Hou use?' but 'what repeatable methods can Alan Hou build?' A studio language can include diagrams, essays, archives, public notes, generated images, interviews, and interactive pages.",
+      zh: "这一周把研究转向实践。问题不是“Alan Hou 应该用什么风格”，而是“Alan Hou 能建立什么可重复的方法”。一种工作室语言可以包含图表、文章、档案、公开笔记、生成图像、访谈和互动页面。"
+    }
+  },
+  {
+    week: 15,
+    title: { en: "A living visual system needs rules", zh: "活的视觉系统需要规则" },
+    body: {
+      en: "A visual system becomes alive when it can respond without becoming random. Define inputs, transformations, constraints, and feedback: what enters the system, what changes, what stays stable, and what the audience can learn from the change.",
+      zh: "视觉系统之所以有生命感，是因为它能回应变化，同时不变成随机噪音。你需要定义输入、转换、限制和反馈：什么进入系统，什么发生变化，什么保持稳定，观众能从变化中学到什么。"
+    }
+  },
+  {
+    week: 16,
+    title: { en: "The portfolio is a worldview", zh: "作品集是一种世界观" },
+    body: {
+      en: "The final concept should not be a pile of exercises. It should show a worldview: what questions you return to, what media you trust, what experiences you can build, and why your method belongs to this moment.",
+      zh: "最终作品集不应该是一堆练习，而应该呈现一种世界观：你反复追问什么问题，你信任哪些媒介，你能建造什么经验，以及为什么你的方法属于这个时代。"
+    }
+  }
+];
+
+export const mediaItems: MediaItem[] = [
+  {
+    id: "duchamp-fountain",
+    weeks: [1, 2, 6],
+    title: "Fountain",
+    creator: "Marcel Duchamp, photographed by Alfred Stieglitz",
+    year: "1917",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/960px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Marcel_Duchamp,_1917,_Fountain,_photograph_by_Alfred_Stieglitz.jpg",
+    license: "Wikimedia Commons source page",
+    caption: {
+      en: "A readymade becomes a lesson in context: the object is ordinary, but the naming, submission, rejection, and debate make the work historically explosive.",
+      zh: "现成品让语境成为课程：物本身很普通，但命名、投稿、拒绝和争论让它具有历史爆炸力。"
+    }
+  },
+  {
+    id: "kosuth-one-three-chairs",
+    weeks: [1, 2, 8, 10, 11],
+    title: "One and Three Chairs",
+    creator: "Joseph Kosuth",
+    year: "1965",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/One_and_Three_Chair.jpg/1280px-One_and_Three_Chair.jpg",
+    sourceUrl: "https://www.moma.org/collection/works/81435",
+    license: "Artwork copyright noted by MoMA; image study reference linked through source metadata",
+    caption: {
+      en: "Object, photograph, and definition sit together so the viewer can compare three systems of meaning: thing, image, and language.",
+      zh: "物体、照片和定义并置在一起，让观看者比较三套意义系统：物、图像和语言。"
+    }
+  },
+  {
+    id: "paik-tv-buddha",
+    weeks: [3, 4, 8],
+    title: "TV Buddha",
+    creator: "Nam June Paik",
+    year: "1974 / later versions",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/TV_Buddha.jpg/960px-TV_Buddha.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:TV_Buddha.jpg",
+    license: "CC BY 2.0, photograph by Angus Fraser via Wikimedia Commons",
+    caption: {
+      en: "A closed-circuit loop turns television into a mirror. The work is simple enough to grasp quickly and strange enough to keep unfolding.",
+      zh: "闭路电视回路把电视变成镜子。作品足够简单，能立刻看懂；又足够奇异，会不断展开新的问题。"
+    }
+  },
+  {
+    id: "weather-project",
+    weeks: [1, 2, 5, 15],
+    title: "The Weather Project",
+    creator: "Olafur Eliasson",
+    year: "2003",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/68/The_Weather_Project.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:The_Weather_Project.jpg",
+    license: "CC BY 2.0, photograph by wonderferret via Wikimedia Commons",
+    caption: {
+      en: "The work makes atmosphere into material: light, mist, scale, reflection, and crowd behavior become the actual experience.",
+      zh: "作品把氛围变成材料：光、雾、尺度、反射和人群行为共同构成真正的经验。"
+    }
+  },
+  {
+    id: "paik-confused-rain",
+    weeks: [4, 12, 15],
+    title: "Confused Rain",
+    creator: "Nam June Paik",
+    year: "1967",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_June_Paik_Confused_Rain_cced.jpg?width=900",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Nam_June_Paik_Confused_Rain_cced.jpg",
+    license: "Wikimedia Commons source page",
+    caption: {
+      en: "An early computer-graphic work that helps connect video art, code, machine output, and the prehistory of generative images.",
+      zh: "这件早期计算机图形作品帮助我们把影像艺术、代码、机器输出和生成图像的前史连接起来。"
+    }
+  },
+  {
+    id: "tate-weather-wide",
+    weeks: [3, 6],
+    title: "The Weather Project in Tate Modern",
+    creator: "Olafur Eliasson / photograph by Michael Reeve",
+    year: "2003",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Tate.modern.weather.project.jpg?width=900",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Tate.modern.weather.project.jpg",
+    license: "CC BY-SA 3.0 / GFDL via Wikimedia Commons",
+    caption: {
+      en: "A reminder that installation art is spatial and social: the institution, architecture, light, and bodies in the room all matter.",
+      zh: "它提醒我们装置艺术是空间性和社会性的：机构、建筑、光线和现场身体都很重要。"
+    }
+  }
+];
+
+export function getLessonSections(week: number) {
+  return lessonSections.filter((section) => section.week === week);
+}
+
+export function getMediaItems(week: number) {
+  return mediaItems.filter((item) => item.weeks.includes(week));
+}
 
 export function getWeek(week: number) {
   return weeks.find((item) => item.week === week);

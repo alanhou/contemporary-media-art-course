@@ -23,7 +23,7 @@ const labels = {
 ---
 
 {kind === "timeline" && (
-  <section class="visual-map" aria-label={lang === "en" ? "12-week timeline" : "12 周时间线"}>
+  <section class="visual-map visual-map--timeline" aria-label={lang === "en" ? "12-week timeline" : "12 周时间线"}>
     <div class="timeline-map">
       {labels.timeline.map((label, index) => (
         <div class="timeline-node">
@@ -37,42 +37,50 @@ const labels = {
 
 {kind === "medium-map" && (
   <section class="visual-map radial-map" aria-label={lang === "en" ? "Medium map" : "媒介地图"}>
-    {labels.media.map((label, index) => (
-      <div class={`radial-item radial-${index}`}>
-        <span>{label}</span>
-      </div>
-    ))}
     <div class="radial-core">{lang === "en" ? "Contemporary Art" : "当代艺术"}</div>
+    <div class="radial-grid">
+      {labels.media.map((label) => (
+        <div class="radial-item">
+          <span>{label}</span>
+        </div>
+      ))}
+    </div>
   </section>
 )}
 
 {kind === "matrix" && (
-  <section class="visual-map matrix-map" aria-label={lang === "en" ? "Artist theme matrix" : "艺术家主题矩阵"}>
-    {(lang === "en"
-      ? [["Politics", "Ai Weiwei"], ["Identity", "Sherman"], ["Video", "Paik"], ["Immersion", "Eliasson"], ["AI/Data", "Anadol"], ["Critique", "Steyerl"]]
-      : [["政治", "艾未未"], ["身份", "Sherman"], ["影像", "白南准"], ["沉浸", "Eliasson"], ["AI/数据", "Anadol"], ["批判", "Steyerl"]]
-    ).map(([theme, artist]) => (
-      <div>
-        <strong>{theme}</strong>
-        <span>{artist}</span>
-      </div>
-    ))}
+  <section class="visual-map" aria-label={lang === "en" ? "Artist theme matrix" : "艺术家主题矩阵"}>
+    <div class="matrix-map">
+      {(lang === "en"
+        ? [["Politics", "Ai Weiwei"], ["Identity", "Sherman"], ["Video", "Paik"], ["Immersion", "Eliasson"], ["AI/Data", "Anadol"], ["Critique", "Steyerl"]]
+        : [["政治", "艾未未"], ["身份", "Sherman"], ["影像", "白南准"], ["沉浸", "Eliasson"], ["AI/数据", "Anadol"], ["批判", "Steyerl"]]
+      ).map(([theme, artist]) => (
+        <div>
+          <strong>{theme}</strong>
+          <span>{artist}</span>
+        </div>
+      ))}
+    </div>
   </section>
 )}
 
 {kind === "viewer-spectrum" && (
-  <section class="visual-map spectrum-map" aria-label={lang === "en" ? "Viewer role spectrum" : "观看者角色光谱"}>
-    {labels.viewer.map((label) => <span>{label}</span>)}
+  <section class="visual-map" aria-label={lang === "en" ? "Viewer role spectrum" : "观看者角色光谱"}>
+    <div class="spectrum-map">
+      {labels.viewer.map((label) => <span>{label}</span>)}
+    </div>
   </section>
 )}
 
 {kind === "ai-levels" && (
-  <section class="visual-map ladder-map" aria-label={lang === "en" ? "AI art levels" : "AI 艺术层级"}>
-    {labels.ai.map((label, index) => (
-      <div style={`--step:${index + 1}`}>
-        <span>{index + 1}</span>
-        <strong>{label}</strong>
-      </div>
-    ))}
+  <section class="visual-map" aria-label={lang === "en" ? "AI art levels" : "AI 艺术层级"}>
+    <div class="ladder-map">
+      {labels.ai.map((label, index) => (
+        <div style={`--step:${index + 1}`}>
+          <span>{index + 1}</span>
+          <strong>{label}</strong>
+        </div>
+      ))}
+    </div>
   </section>
 )}
