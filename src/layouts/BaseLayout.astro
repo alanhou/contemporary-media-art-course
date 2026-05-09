@@ -27,17 +27,17 @@ const langPath = path ? path.replace(/^\/?(en|zh)/, `/${otherLang}`) : `/${other
   <body>
     <header class="site-header">
       <a class="brand" href={`${base}/${lang}/`} aria-label="Course home">
-        <span class="brand-mark">AM</span>
+        <span class="brand-mark">AH</span>
         <span>
-          <strong>Art / Media</strong>
-          <small>{lang === "en" ? "Contemporary learning fieldbook" : "当代艺术学习手册"}</small>
+          <strong>Alan Hou</strong>
+          <small>{lang === "en" ? "Contemporary art fieldbook" : "当代艺术学习手册"}</small>
         </span>
       </a>
       <nav class="top-nav" aria-label="Primary">
         <a href={`${base}/${lang}/`}>{currentText.course}</a>
         <a href={`${base}/${lang}/artists/`}>{currentText.artists}</a>
         <a href={`${base}/${lang}/templates/`}>{currentText.templates}</a>
-        <a href={`${base}/${lang}/mandarinai-lab/`}>{currentText.lab}</a>
+        <a href={`${base}/${lang}/studio/`}>{currentText.lab}</a>
         <a class="lang-switch" href={`${base}${langPath}`}>{languages[otherLang].shortLabel}</a>
       </nav>
     </header>

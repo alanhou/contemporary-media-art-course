@@ -41,7 +41,7 @@ export const navText = {
     course: "Course",
     artists: "Artists",
     templates: "Templates",
-    lab: "MandarinAi Lab",
+    lab: "Alan Hou Studio",
     start: "Start Week 1",
     foundation: "Foundation Cycle",
     phaseTwo: "Phase 2",
@@ -59,7 +59,7 @@ export const navText = {
     course: "课程",
     artists: "艺术家",
     templates: "模板",
-    lab: "MandarinAi 实验室",
+    lab: "Alan Hou 工作室",
     start: "从第 1 周开始",
     foundation: "基础周期",
     phaseTwo: "第二阶段",
@@ -336,8 +336,8 @@ export const weeks: Week[] = [
       zh: ["观念提示词", "教育视觉", "艺术指导手册", "产品功能", "创作流程"]
     },
     assignment: {
-      en: "Choose one Mandarin learning concept and transform it through a contemporary art method.",
-      zh: "选择一个中文学习概念，并用一种当代艺术方法重新设计它。"
+      en: "Choose one learning, publishing, or creative-system concept and transform it through a contemporary art method.",
+      zh: "选择一个学习、出版或创作系统概念，并用一种当代艺术方法重新设计它。"
     },
     artists: ["Joseph Kosuth", "Sol LeWitt", "Jenny Holzer", "Chiharu Shiota", "Rafael Lozano-Hemmer"]
   },
@@ -388,8 +388,8 @@ export const weeks: Week[] = [
       zh: ["AI 作为工具与媒介", "数据作为记忆", "AI 批判", "人机协作", "合成媒体", "活系统"]
     },
     assignment: {
-      en: "Draft the AI art concept statement for The Tone Mirror.",
-      zh: "为《声调镜》写一份 AI 艺术概念陈述。"
+      en: "Draft an AI art concept statement for an original Alan Hou project.",
+      zh: "为一个 Alan Hou 原创项目写一份 AI 艺术概念陈述。"
     },
     artists: ["Refik Anadol", "Hito Steyerl", "Trevor Paglen", "Sougwen Chung"],
     chart: "ai-levels"
@@ -407,8 +407,8 @@ export const weeks: Week[] = [
       zh: "研究中国当代艺术家如何转化语言、历史、身体、技术与文化记忆。"
     },
     shift: {
-      en: "Begin with Xu Bing because language, writing systems, meaning, and misunderstanding connect directly to MandarinAi.",
-      zh: "从徐冰开始，因为语言、书写系统、意义与误读都直接连接 MandarinAi。"
+      en: "Begin with Xu Bing because language, writing systems, meaning, and misunderstanding are strong foundations for Alan Hou's research voice.",
+      zh: "从徐冰开始，因为语言、书写系统、意义与误读能成为 Alan Hou 研究声音的重要基础。"
     },
     focus: {
       en: ["Xu Bing", "Ai Weiwei", "Cai Guo-Qiang", "Cao Fei", "LuYang"],
@@ -422,27 +422,27 @@ export const weeks: Week[] = [
   },
   {
     week: 14,
-    slug: "art-methods-for-mandarinai",
+    slug: "art-methods-for-alan-hou-studio",
     track: "phase-two",
     title: {
-      en: "Art Methods for MandarinAi",
-      zh: "MandarinAi 的艺术方法"
+      en: "Art Methods for Alan Hou Studio",
+      zh: "Alan Hou 工作室的艺术方法"
     },
     goal: {
-      en: "Turn language learning into a contemporary-art-inspired experience rather than flashcards and quizzes only.",
-      zh: "把中文学习变成受当代艺术启发的经验，而不只是单词卡和测试。"
+      en: "Turn research, writing, visual systems, and public learning into contemporary-art-inspired experiences.",
+      zh: "把研究、写作、视觉系统和公共学习转化为受当代艺术启发的经验。"
     },
     shift: {
-      en: "Vocabulary can be object/image/word; tones can be motion; grammar can be a generative rule.",
-      zh: "词汇可以是物体、图像与文字；声调可以是运动；语法可以是生成规则。"
+      en: "Ideas can become objects, archives can become interfaces, and writing can become a living visual system.",
+      zh: "观念可以成为物，档案可以成为界面，写作可以成为活的视觉系统。"
     },
     focus: {
-      en: ["Vocabulary as object", "Tones as spatial movement", "Grammar as generative rule", "Progress as memory landscape"],
-      zh: ["词汇作为物", "声调作为空间运动", "语法作为生成规则", "进步作为记忆景观"]
+      en: ["Ideas as objects", "Archives as interfaces", "Writing as public language", "Progress as memory landscape"],
+      zh: ["观念作为物", "档案作为界面", "写作作为公共语言", "进展作为记忆景观"]
     },
     assignment: {
-      en: "Design one MandarinAi feature inspired by a contemporary art method.",
-      zh: "设计一个受当代艺术方法启发的 MandarinAi 功能。"
+      en: "Design one Alan Hou studio project inspired by a contemporary art method.",
+      zh: "设计一个受当代艺术方法启发的 Alan Hou 工作室项目。"
     },
     artists: ["Joseph Kosuth", "Sol LeWitt", "Rafael Lozano-Hemmer", "Chiharu Shiota"]
   },
@@ -467,8 +467,8 @@ export const weeks: Week[] = [
       zh: ["数据氛围", "公共语言", "记忆网络", "光与感知", "反馈回路"]
     },
     assignment: {
-      en: "Sketch a living visual system for tone, vocabulary, memory, and learner feedback.",
-      zh: "为声调、词汇、记忆和学习反馈画出一个活的视觉系统。"
+      en: "Sketch a living visual system for research notes, images, memory, and audience feedback.",
+      zh: "为研究笔记、图像、记忆和观众反馈画出一个活的视觉系统。"
     },
     artists: ["Refik Anadol", "Jenny Holzer", "Chiharu Shiota", "Olafur Eliasson", "Nam June Paik"]
   },
@@ -577,20 +577,20 @@ export const quizzes: Quiz[] = [
 
 export const artists: Artist[] = [
   { name: "Marcel Duchamp", medium: "Conceptual / readymade", theme: "authorship, institution, context", usefulFor: "Meaning through framing", weeks: [1, 6, 7] },
-  { name: "Joseph Kosuth", medium: "Conceptual / language", theme: "object, image, definition", usefulFor: "Vocabulary as object/image/word", weeks: [1, 10, 11] },
-  { name: "Sol LeWitt", medium: "Instruction / drawing", theme: "rules, systems, execution", usefulFor: "Grammar as generative rule", weeks: [1, 10] },
+  { name: "Joseph Kosuth", medium: "Conceptual / language", theme: "object, image, definition", usefulFor: "Ideas as object/image/word", weeks: [1, 10, 11] },
+  { name: "Sol LeWitt", medium: "Instruction / drawing", theme: "rules, systems, execution", usefulFor: "Rules as generative structure", weeks: [1, 10] },
   { name: "Jenny Holzer", medium: "Text / LED", theme: "public language, power", usefulFor: "Language in public space", weeks: [1, 10, 15] },
   { name: "Barbara Kruger", medium: "Text / image", theme: "media, gender, power", usefulFor: "Critical copywriting", weeks: [1, 2, 9] },
   { name: "Yayoi Kusama", medium: "Installation", theme: "repetition, infinity, self", usefulFor: "Repetition as emotional system", weeks: [1, 7, 9] },
-  { name: "Olafur Eliasson", medium: "Installation / light", theme: "perception, atmosphere", usefulFor: "Learning as sensory environment", weeks: [1, 15] },
+  { name: "Olafur Eliasson", medium: "Installation / light", theme: "perception, atmosphere", usefulFor: "Research as sensory environment", weeks: [1, 15] },
   { name: "Doris Salcedo", medium: "Installation", theme: "memory, wound, history", usefulFor: "Absence as narrative", weeks: [1] },
-  { name: "Do Ho Suh", medium: "Fabric architecture", theme: "home, migration, memory", usefulFor: "Language as portable space", weeks: [1, 2] },
-  { name: "Chiharu Shiota", medium: "Thread installation", theme: "memory, networks, absence", usefulFor: "Vocabulary memory networks", weeks: [1, 9, 10, 15] },
+  { name: "Do Ho Suh", medium: "Fabric architecture", theme: "home, migration, memory", usefulFor: "Memory as portable space", weeks: [1, 2] },
+  { name: "Chiharu Shiota", medium: "Thread installation", theme: "memory, networks, absence", usefulFor: "Research memory networks", weeks: [1, 9, 10, 15] },
   { name: "Marina Abramovic", medium: "Performance", theme: "presence, endurance, gaze", usefulFor: "Attention as interaction", weeks: [1, 2, 3, 6] },
-  { name: "Yoko Ono", medium: "Performance / instruction", theme: "participation, vulnerability", usefulFor: "Learner agency", weeks: [1] },
-  { name: "Tehching Hsieh", medium: "Duration performance", theme: "time, discipline, life", usefulFor: "Learning as ritual", weeks: [1] },
+  { name: "Yoko Ono", medium: "Performance / instruction", theme: "participation, vulnerability", usefulFor: "Audience agency", weeks: [1] },
+  { name: "Tehching Hsieh", medium: "Duration performance", theme: "time, discipline, life", usefulFor: "Practice as ritual", weeks: [1] },
   { name: "Joseph Beuys", medium: "Performance / social sculpture", theme: "ritual, politics, healing", usefulFor: "Education as social sculpture", weeks: [1] },
-  { name: "Ana Mendieta", medium: "Body / earth", theme: "trace, absence, ritual", usefulFor: "Embodied language memory", weeks: [1] },
+  { name: "Ana Mendieta", medium: "Body / earth", theme: "trace, absence, ritual", usefulFor: "Embodied memory", weeks: [1] },
   { name: "Nam June Paik", medium: "Video sculpture", theme: "television, feedback, time", usefulFor: "AI mirror and feedback loops", weeks: [2, 3, 4, 6, 8, 15] },
   { name: "Bill Viola", medium: "Video installation", theme: "time, spirituality, transformation", usefulFor: "Slow attention", weeks: [2, 3] },
   { name: "Bruce Nauman", medium: "Video / performance / neon", theme: "repetition, body, pressure", usefulFor: "Repetition with psychological force", weeks: [3] },
@@ -599,7 +599,7 @@ export const artists: Artist[] = [
   { name: "JODI", medium: "Internet art", theme: "browser, error, code", usefulFor: "Interface as art material", weeks: [4, 5] },
   { name: "Olia Lialina", medium: "Net art", theme: "web culture, identity", usefulFor: "Web-native learning spaces", weeks: [4, 5] },
   { name: "Casey Reas", medium: "Generative art", theme: "code, process, form", usefulFor: "Rule-based visual feedback", weeks: [4] },
-  { name: "Rafael Lozano-Hemmer", medium: "Interactive installation", theme: "body, biometric input, public space", usefulFor: "Voice-reactive learning", weeks: [4, 6, 10, 14] },
+  { name: "Rafael Lozano-Hemmer", medium: "Interactive installation", theme: "body, biometric input, public space", usefulFor: "Audience-responsive systems", weeks: [4, 6, 10, 14] },
   { name: "teamLab", medium: "Immersive digital installation", theme: "participation, spectacle, environment", usefulFor: "Group learning atmosphere", weeks: [4, 5] },
   { name: "Refik Anadol", medium: "AI / data installation", theme: "data, memory, immersion", usefulFor: "Data as sensory memory", weeks: [2, 4, 5, 7, 12, 15] },
   { name: "Sougwen Chung", medium: "Human-machine drawing", theme: "collaboration, gesture, machine", usefulFor: "Human-AI co-practice", weeks: [2, 4, 12] },

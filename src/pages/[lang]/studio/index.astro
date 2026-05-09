@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import VisualMap from "@/components/VisualMap.astro";
+import { navText, type Lang } from "@/data/course";
+
+export function getStaticPaths() {
+  return ["en", "zh"].map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = navText[lang];
+const cards = lang === "en"
+  ? [
+      ["Kosuth method", "An idea appears as object, image, word, caption, and context."],
+      ["LeWitt method", "A creative rule becomes a system that generates visible variation."],
+      ["Holzer method", "Writing leaves the page and becomes public language."],
+      ["Shiota method", "Notes, images, references, and memories become a research network."],
+      ["Lozano-Hemmer method", "Audience input changes light, image, rhythm, and feedback."]
+    ]
+  : [
+      ["Kosuth 方法", "一个观念同时成为物体、图像、文字、说明和语境。"],
+      ["LeWitt 方法", "一条创作规则成为能生成视觉变化的系统。"],
+      ["Holzer 方法", "写作离开页面，成为公共空间中的语言。"],
+      ["Shiota 方法", "笔记、图像、参考和记忆连接成研究网络。"],
+      ["Lozano-Hemmer 方法", "观众输入改变光、图像、节奏和反馈。"]
+    ];
+---
+
+<BaseLayout
+  title={`${t.lab} | Contemporary Media Art Course`}
+  description="Alan Hou studio method-transfer lab."
+  lang={lang}
+  path={`/${lang}/studio/`}
+>
+  <section class="page-title">
+    <p class="eyebrow">{t.lab}</p>
+    <h1>{lang === "en" ? "Turn art methods into Alan Hou projects" : "把艺术方法转化为 Alan Hou 项目"}</h1>
+    <p>
+      {lang === "en"
+        ? "This studio translates contemporary art methods into personal research, publishing, visual systems, and public learning projects."
+        : "这个工作室把当代艺术方法转化为个人研究、出版、视觉系统和公共学习项目。"}
+    </p>
+  </section>
+
+  <section class="lesson-section">
+    <VisualMap kind="ai-levels" lang={lang} />
+  </section>
+
+  <section class="method-grid">
+    {cards.map(([title, body]) => (
+      <article>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
