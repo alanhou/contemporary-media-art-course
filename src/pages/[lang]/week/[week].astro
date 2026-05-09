@@ -6,6 +6,7 @@ import VisualMap from "@/components/VisualMap.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getBeginnerGuide, getBeginnerQuizzes, getSupplementalMedia } from "@/data/beginnerGuides";
 import { getLessonSections, getMediaItems, getWeek, getWeekQuizzes, navText, weeks, type Lang } from "@/data/course";
+import { getArtistLessonCards, getFocusCards } from "@/data/lessonExplanations";
 
 export function getStaticPaths() {
   return ["en", "zh"].flatMap((lang) =>
@@ -27,6 +28,8 @@ const quizzes = [...getWeekQuizzes(week.week, lang), ...getBeginnerQuizzes(week.
 const lessonSections = getLessonSections(week.week);
 const beginnerGuide = getBeginnerGuide(week.week);
 const mediaItems = [...getMediaItems(week.week), ...getSupplementalMedia(week.week)];
+const focusCards = getFocusCards(week.week, week.focus[lang], lang);
+const artistCards = getArtistLessonCards(week.artists, lang);
 const previousWeek = getWeek(week.week - 1);
 const nextWeek = getWeek(week.week + 1);
 ---
@@ -111,8 +114,13 @@ const nextWeek = getWeek(week.week + 1);
 
       <section class="lesson-section">
         <p class="eyebrow">{t.focus}</p>
-        <div class="focus-list">
-          {week.focus[lang].map((item) => <span>{item}</span>)}
+        <div class="focus-card-grid">
+          {focusCards.map((item) => (
+            <article class="explain-card">
+              <h3>{item.label}</h3>
+              <p>{item.explanation}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -125,8 +133,13 @@ const nextWeek = getWeek(week.week + 1);
 
       <section class="lesson-section">
         <p class="eyebrow">{t.artists}</p>
-        <div class="artist-strip">
-          {week.artists.map((artist) => <span>{artist}</span>)}
+        <div class="artist-lesson-grid">
+          {artistCards.map((artist) => (
+            <article class="explain-card artist-method-card">
+              <h3>{artist.name}</h3>
+              <p>{artist.method}</p>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -393,6 +393,35 @@ textarea {
   gap: 10px;
 }
 
+.focus-card-grid,
+.artist-lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.explain-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.explain-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.explain-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.artist-method-card {
+  border-left: 4px solid var(--teal);
+}
+
 .focus-list span,
 .artist-strip span,
 .spectrum-map span {
@@ -740,6 +769,8 @@ textarea {
   .media-notes,
   .media-gallery,
   .guide-grid,
+  .focus-card-grid,
+  .artist-lesson-grid,
   .ladder-map {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -801,6 +832,8 @@ textarea {
   .media-notes,
   .media-gallery,
   .guide-grid,
+  .focus-card-grid,
+  .artist-lesson-grid,
   .timeline-map,
   .matrix-map,
   .ladder-map {
