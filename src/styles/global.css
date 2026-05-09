@@ -313,6 +313,79 @@ textarea {
   line-height: 1.8;
 }
 
+.beginner-guide {
+  display: grid;
+  gap: 16px;
+  background: #f0f4f2;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.guide-panel {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.guide-key {
+  max-width: 900px;
+  border-left: 5px solid var(--teal);
+}
+
+.guide-panel h2,
+.guide-panel h3 {
+  margin: 0 0 12px;
+}
+
+.guide-panel h2 {
+  font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+}
+
+.guide-panel h3 {
+  font-size: 1.05rem;
+}
+
+.guide-panel p,
+.guide-panel li,
+.glossary-list dd {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.guide-artwork {
+  margin-top: 0;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.guide-panel ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.guide-panel li + li {
+  margin-top: 8px;
+}
+
+.glossary-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.glossary-list dt {
+  font-weight: 850;
+}
+
+.glossary-list dd {
+  margin: 2px 0 0;
+}
+
 .focus-list,
 .artist-strip {
   display: flex;
@@ -512,6 +585,10 @@ textarea {
   background: var(--surface);
 }
 
+.media-card--text {
+  grid-template-columns: 1fr;
+}
+
 .media-image {
   min-height: 240px;
   background: #e9e9e2;
@@ -662,6 +739,7 @@ textarea {
   .method-grid,
   .media-notes,
   .media-gallery,
+  .guide-grid,
   .ladder-map {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -722,6 +800,7 @@ textarea {
   .method-grid,
   .media-notes,
   .media-gallery,
+  .guide-grid,
   .timeline-map,
   .matrix-map,
   .ladder-map {

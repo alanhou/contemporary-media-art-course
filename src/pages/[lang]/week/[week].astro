@@ -4,6 +4,7 @@ import MediaGallery from "@/components/MediaGallery.astro";
 import Quiz from "@/components/Quiz.astro";
 import VisualMap from "@/components/VisualMap.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getBeginnerGuide, getBeginnerQuizzes, getSupplementalMedia } from "@/data/beginnerGuides";
 import { getLessonSections, getMediaItems, getWeek, getWeekQuizzes, navText, weeks, type Lang } from "@/data/course";
 
 export function getStaticPaths() {
@@ -22,9 +23,10 @@ if (!week) {
 
 const t = navText[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const quizzes = getWeekQuizzes(week.week, lang);
+const quizzes = [...getWeekQuizzes(week.week, lang), ...getBeginnerQuizzes(week.week, lang)];
 const lessonSections = getLessonSections(week.week);
-const mediaItems = getMediaItems(week.week);
+const beginnerGuide = getBeginnerGuide(week.week);
+const mediaItems = [...getMediaItems(week.week), ...getSupplementalMedia(week.week)];
 const previousWeek = getWeek(week.week - 1);
 const nextWeek = getWeek(week.week + 1);
 ---
@@ -66,6 +68,44 @@ const nextWeek = getWeek(week.week + 1);
               <p>{section.body[lang]}</p>
             </article>
           ))}
+        </section>
+      )}
+
+      {beginnerGuide && (
+        <section class="lesson-section beginner-guide">
+          <p class="eyebrow">{lang === "en" ? "Beginner Path" : "初学者路径"}</p>
+          <article class="guide-panel guide-key">
+            <h2>{lang === "en" ? "Key idea in plain language" : "用白话说核心观念"}</h2>
+            <p>{beginnerGuide.keyIdea[lang]}</p>
+          </article>
+          <div class="guide-grid">
+            <article class="guide-panel">
+              <h3>{lang === "en" ? "Glossary" : "词汇表"}</h3>
+              <dl class="glossary-list">
+                {beginnerGuide.glossary.map((entry) => (
+                  <>
+                    <dt>{entry.term[lang]}</dt>
+                    <dd>{entry.definition[lang]}</dd>
+                  </>
+                ))}
+              </dl>
+            </article>
+            <article class="guide-panel">
+              <h3>{lang === "en" ? "Artwork walkthrough" : "作品走读"}</h3>
+              <p class="guide-artwork">{beginnerGuide.walkthrough.artwork}</p>
+              <ol>
+                {beginnerGuide.walkthrough.steps[lang].map((step) => <li>{step}</li>)}
+              </ol>
+            </article>
+            <article class="guide-panel">
+              <h3>{lang === "en" ? "Common beginner mistake" : "初学者常见误区"}</h3>
+              <p>{beginnerGuide.commonMistake[lang]}</p>
+            </article>
+            <article class="guide-panel">
+              <h3>{lang === "en" ? "Try this now" : "现在试一下"}</h3>
+              <p>{beginnerGuide.tryThis[lang]}</p>
+            </article>
+          </div>
         </section>
       )}
 

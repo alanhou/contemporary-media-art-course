@@ -12,7 +12,7 @@ const { items, lang } = Astro.props;
 {items.length > 0 && (
   <div class="media-gallery">
     {items.map((item) => (
-      <article class="media-card">
+      <article class={item.imageUrl ? "media-card" : "media-card media-card--text"}>
         {item.imageUrl && (
           <a class="media-image" href={item.sourceUrl} target="_blank" rel="noreferrer">
             <img src={item.imageUrl} alt={`${item.title} — ${item.creator}`} loading="lazy" />
