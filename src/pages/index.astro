@@ -1,15 +1,16 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const courseUrl = `${base}/en/`;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content={`0; url=${base}en/`} />
+    <meta http-equiv="refresh" content={`0; url=${courseUrl}`} />
     <title>Contemporary Media Art Course</title>
   </head>
   <body>
-    <a href={`${base}en/`}>Open course</a>
+    <a href={courseUrl}>Open course</a>
   </body>
 </html>
